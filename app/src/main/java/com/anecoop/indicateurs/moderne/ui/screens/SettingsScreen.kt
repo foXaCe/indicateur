@@ -41,121 +41,150 @@ fun SettingsScreen(
                 .padding(paddingValues)
                 .padding(16.dp)
         ) {
-            ThemeSection(
-                currentTheme = themeMode,
-                onThemeChanged = { newTheme ->
-                    viewModel.setThemeMode(newTheme)
-                }
-            )
-        }
-    }
-}
-
-@Composable
-fun ThemeSection(
-    currentTheme: ThemeMode,
-    onThemeChanged: (ThemeMode) -> Unit
-) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-    ) {
-        Column(
-            modifier = Modifier.padding(16.dp)
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.padding(bottom = 16.dp)
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
             ) {
-                Icon(
-                    Icons.Default.Settings,
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.primary
-                )
-                Spacer(modifier = Modifier.width(12.dp))
-                Text(
-                    text = "Thème",
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.primary
-                )
+                Column(
+                    modifier = Modifier.padding(16.dp)
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.padding(bottom = 16.dp)
+                    ) {
+                        Icon(
+                            Icons.Default.Settings,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                        Spacer(modifier = Modifier.width(12.dp))
+                        Text(
+                            text = "Thème",
+                            style = MaterialTheme.typography.titleMedium,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                    
+                    Column(modifier = Modifier.selectableGroup()) {
+                        // Option Système
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .selectable(
+                                    selected = themeMode == ThemeMode.SYSTEM,
+                                    onClick = { viewModel.setThemeMode(ThemeMode.SYSTEM) },
+                                    role = Role.RadioButton
+                                )
+                                .padding(vertical = 8.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            RadioButton(
+                                selected = themeMode == ThemeMode.SYSTEM,
+                                onClick = null
+                            )
+                            Spacer(modifier = Modifier.width(12.dp))
+                            Icon(
+                                Icons.Default.Phone,
+                                contentDescription = null,
+                                tint = if (themeMode == ThemeMode.SYSTEM) MaterialTheme.colorScheme.primary 
+                                      else MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                            Spacer(modifier = Modifier.width(12.dp))
+                            Column {
+                                Text(
+                                    text = "Système",
+                                    style = MaterialTheme.typography.bodyLarge,
+                                    color = if (themeMode == ThemeMode.SYSTEM) MaterialTheme.colorScheme.primary
+                                           else MaterialTheme.colorScheme.onSurface
+                                )
+                                Text(
+                                    text = "Suit les paramètres du système",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
+                        }
+                        
+                        // Option Clair
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .selectable(
+                                    selected = themeMode == ThemeMode.LIGHT,
+                                    onClick = { viewModel.setThemeMode(ThemeMode.LIGHT) },
+                                    role = Role.RadioButton
+                                )
+                                .padding(vertical = 8.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            RadioButton(
+                                selected = themeMode == ThemeMode.LIGHT,
+                                onClick = null
+                            )
+                            Spacer(modifier = Modifier.width(12.dp))
+                            Icon(
+                                Icons.Default.WbSunny,
+                                contentDescription = null,
+                                tint = if (themeMode == ThemeMode.LIGHT) MaterialTheme.colorScheme.primary 
+                                      else MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                            Spacer(modifier = Modifier.width(12.dp))
+                            Column {
+                                Text(
+                                    text = "Clair",
+                                    style = MaterialTheme.typography.bodyLarge,
+                                    color = if (themeMode == ThemeMode.LIGHT) MaterialTheme.colorScheme.primary
+                                           else MaterialTheme.colorScheme.onSurface
+                                )
+                                Text(
+                                    text = "Toujours en mode clair",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
+                        }
+                        
+                        // Option Sombre
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .selectable(
+                                    selected = themeMode == ThemeMode.DARK,
+                                    onClick = { viewModel.setThemeMode(ThemeMode.DARK) },
+                                    role = Role.RadioButton
+                                )
+                                .padding(vertical = 8.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            RadioButton(
+                                selected = themeMode == ThemeMode.DARK,
+                                onClick = null
+                            )
+                            Spacer(modifier = Modifier.width(12.dp))
+                            Icon(
+                                Icons.Default.Brightness2,
+                                contentDescription = null,
+                                tint = if (themeMode == ThemeMode.DARK) MaterialTheme.colorScheme.primary 
+                                      else MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                            Spacer(modifier = Modifier.width(12.dp))
+                            Column {
+                                Text(
+                                    text = "Sombre",
+                                    style = MaterialTheme.typography.bodyLarge,
+                                    color = if (themeMode == ThemeMode.DARK) MaterialTheme.colorScheme.primary
+                                           else MaterialTheme.colorScheme.onSurface
+                                )
+                                Text(
+                                    text = "Toujours en mode sombre",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
+                        }
+                    }
+                }
             }
-            
-            Column(modifier = Modifier.selectableGroup()) {
-                ThemeOption(
-                    text = "Système",
-                    subtitle = "Suit les paramètres du système",
-                    icon = Icons.Default.Smartphone,
-                    selected = currentTheme == ThemeMode.SYSTEM,
-                    onClick = { onThemeChanged(ThemeMode.SYSTEM) }
-                )
-                
-                ThemeOption(
-                    text = "Clair",
-                    subtitle = "Toujours en mode clair",
-                    icon = Icons.Default.WbSunny,
-                    selected = currentTheme == ThemeMode.LIGHT,
-                    onClick = { onThemeChanged(ThemeMode.LIGHT) }
-                )
-                
-                ThemeOption(
-                    text = "Sombre",
-                    subtitle = "Toujours en mode sombre",
-                    icon = Icons.Default.Nightlight,
-                    selected = currentTheme == ThemeMode.DARK,
-                    onClick = { onThemeChanged(ThemeMode.DARK) }
-                )
-            }
-        }
-    }
-}
-
-@Composable
-fun ThemeOption(
-    text: String,
-    subtitle: String,
-    icon: androidx.compose.ui.graphics.vector.ImageVector,
-    selected: Boolean,
-    onClick: () -> Unit
-) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .selectable(
-                selected = selected,
-                onClick = onClick,
-                role = Role.RadioButton
-            )
-            .padding(vertical = 8.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        RadioButton(
-            selected = selected,
-            onClick = null
-        )
-        
-        Spacer(modifier = Modifier.width(12.dp))
-        
-        Icon(
-            icon,
-            contentDescription = null,
-            tint = if (selected) MaterialTheme.colorScheme.primary 
-                  else MaterialTheme.colorScheme.onSurfaceVariant
-        )
-        
-        Spacer(modifier = Modifier.width(12.dp))
-        
-        Column {
-            Text(
-                text = text,
-                style = MaterialTheme.typography.bodyLarge,
-                color = if (selected) MaterialTheme.colorScheme.primary
-                       else MaterialTheme.colorScheme.onSurface
-            )
-            Text(
-                text = subtitle,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
         }
     }
 }
