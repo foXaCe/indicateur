@@ -1,0 +1,26 @@
+# Built application files
+*.apk
+*.aab
+
+# Gradle files
+.gradle/
+build/
+app/build/
+
+# Local configuration
+local.properties
+
+# IntelliJ/Android Studio
+*.iml
+.idea/
+
+# Logs
+*.log
+
+# Cache files
+.cxx/
+.externalNativeBuild
+
+# macOS/Windows
+.DS_Store
+Thumbs.db
