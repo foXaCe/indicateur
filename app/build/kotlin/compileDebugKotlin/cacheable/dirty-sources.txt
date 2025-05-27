@@ -1,0 +1,3 @@
+/home/stephane/Téléchargements/IndicateursModerne/app/src/main/java/com/anecoop/indicateurs/moderne/ui/theme/Theme.kt
+/home/stephane/Téléchargements/IndicateursModerne/app/src/main/java/com/anecoop/indicateurs/moderne/MainActivity.kt
+/home/stephane/Téléchargements/IndicateursModerne/app/src/main/java/com/anecoop/indicateurs/moderne/IndicateursApplication.kt
