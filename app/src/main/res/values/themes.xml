@@ -1,3 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.IndicateursModerne" parent="android:Theme.Material.DayNight.NoActionBar" />
+    <style name="Theme.IndicateursModerne" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:colorPrimary">#6200EE</item>
+    </style>
 </resources>
